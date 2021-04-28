@@ -167,12 +167,12 @@ class Main extends PluginBase implements Listener {
                             return true;
                         case "blue_creeper":
 				 $m = EconomyAPI::getInstance()->myMoney($sender);
-				$getperm = new Config("plugins/PurePerms/players/" . $sender->getName() . ".yml", Config::YAML);
-				if($getperm->get("blue.creeper") === false) {
+	
+				if($player->hasPermission("blue_creeper.cape") === false) {
 				  if($m >=30){
-						      EconomyAPI::getInstance()->reduceMoney($sender, 30);
-				    $sender->sendMessage("§f[§bBedWars Shop§f] §aBlue creeper cape purchased!");
-				    $player->getServer()->dispatchCommand("setuperm ".$player->getName()." blue.creeper");
+						      EconomyAPI::getInstance()->reduceMoney($player, 30);
+				    $player->sendMessage("§f[§bBedWars Shop§f] §aBlue creeper cape purchased!");
+				   $player->addPermission("blue_creeper.cape")
 				$oldSkin = $player->getSkin();
 				$capeData = $this->createCape("Blue_Creeper");
 				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
@@ -192,13 +192,13 @@ class Main extends PluginBase implements Listener {
 				}
                             return true;
                         case "enderman":
-					    $m = EconomyAPI::getInstance()->myMoney($sender);
-				$getperm = new Config("plugins/PurePerms/players/" . $sender->getName() . ".yml", Config::YAML);
-				if($getperm->get("enderman.cape") === false) {
+					    $m = EconomyAPI::getInstance()->myMoney($player);
+				
+				if($player->hasPermission("enderman.cape") === false) {
 				  if($m >=100){
-						      EconomyAPI::getInstance()->reduceMoney($sender, 100);
-				    $sender->sendMessage("§f[§bBedWars Shop§f] §aEnderman cape purchased!");
-				    $player->getServer()->dispatchCommand("setuperm ".$player->getName()." enderman.cape");
+						      EconomyAPI::getInstance()->reduceMoney($player, 100);
+				    $player->sendMessage("§f[§bBedWars Shop§f] §aEnderman cape purchased!");
+				    $player->hasPermission("enderman.cape")
 				$oldSkin = $player->getSkin();
 				$capeData = $this->createCape("Enderman");
 				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
@@ -218,13 +218,12 @@ class Main extends PluginBase implements Listener {
 				}
 				    return true;
                         case "energy":
-                            	    $m = EconomyAPI::getInstance()->myMoney($sender);
-				$getperm = new Config("plugins/PurePerms/players/" . $sender->getName() . ".yml", Config::YAML);
-				if($getperm->get("energy.cape") === false) {
+                            	    $m = EconomyAPI::getInstance()->myMoney($player);
+				if($player->hasPermission("energy.cape") === false) {
 				  if($m >=150){
-						      EconomyAPI::getInstance()->reduceMoney($sender, 150);
-				    $sender->sendMessage("§f[§bBedWars Shop§f] §aEnergy cape purchased!");
-				    $player->getServer()->dispatchCommand("setuperm ".$player->getName()." energy.cape");
+						      EconomyAPI::getInstance()->reduceMoney($player, 150);
+				    $player->sendMessage("§f[§bBedWars Shop§f] §aEnergy cape purchased!");
+				    $player->addPermission("energy.cape")
 				$oldSkin = $player->getSkin();
 				$capeData = $this->createCape("Energy");
 				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
@@ -244,13 +243,12 @@ class Main extends PluginBase implements Listener {
 				}
                 return true;
                         case "fire":
-                           	    $m = EconomyAPI::getInstance()->myMoney($sender);
-				$getperm = new Config("plugins/PurePerms/players/" . $sender->getName() . ".yml", Config::YAML);
-				if($getperm->get("fire.cape") === false) {
+                           	    $m = EconomyAPI::getInstance()->myMoney($player);
+				if($player->hasPermission("fire.cape") === false) {
 				  if($m >=250){
-						      EconomyAPI::getInstance()->reduceMoney($sender, 250);
-				    $sender->sendMessage("§f[§bBedWars Shop§f] §aFire creeper cape purchased!");
-				    $player->getServer()->dispatchCommand("setuperm ".$player->getName()." fire.cape");
+						      EconomyAPI::getInstance()->reduceMoney($player, 250);
+				    $player->sendMessage("§f[§bBedWars Shop§f] §aFire creeper cape purchased!");
+				    $player->addPermission("fire.cape")
 				$oldSkin = $player->getSkin();
 				$capeData = $this->createCape("Fire");
 				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
