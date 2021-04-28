@@ -148,10 +148,10 @@ class Main extends PluginBase implements Listener {
         $form->setContent("§f>> Here you can choose a Cape!");
         $form->addButton("§4Abort", 0);
         $form->addButton("§0Remove a Cape", 1);
-        $form->addButton("§eBlue-Creeper-Cape", 2);
-        $form->addButton("§eEndermancape", 3);
-        $form->addButton("§eEnergycape", 4);
-        $form->addButton("§eFirecape", 5);
+        $form->addButton("§eBlue-Creeper-Cape > $30", 2);
+        $form->addButton("§eEndermancape > $100", 3);
+        $form->addButton("§eEnergycape > $200", 4);
+        $form->addButton("§eFirecape > $250", 5);
         $form->sendToPlayer($player);
         }
         return true;
@@ -247,8 +247,8 @@ class Main extends PluginBase implements Listener {
                            	    $m = EconomyAPI::getInstance()->myMoney($sender);
 				$getperm = new Config("plugins/PurePerms/players/" . $sender->getName() . ".yml", Config::YAML);
 				if($getperm->get("fire.cape") === false) {
-				  if($m >=200){
-						      EconomyAPI::getInstance()->reduceMoney($sender, 200);
+				  if($m >=250){
+						      EconomyAPI::getInstance()->reduceMoney($sender, 250);
 				    $sender->sendMessage("§f[§bBedWars Shop§f] §aFire creeper cape purchased!");
 				    $player->getServer()->dispatchCommand("setuperm ".$player->getName()." fire.cape");
 				$oldSkin = $player->getSkin();
