@@ -172,7 +172,7 @@ class Main extends PluginBase implements Listener {
 				  if($m >=30){
 						      EconomyAPI::getInstance()->reduceMoney($player, 30);
 				    $player->sendMessage("§f[§bBedWars Shop§f] §aBlue creeper cape purchased!");
-				   $player->addPermission("blue_creeper.cape")
+				   $player->addPermission("blue_creeper.cape");
 				$oldSkin = $player->getSkin();
 				$capeData = $this->createCape("Blue_Creeper");
 				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
@@ -198,7 +198,7 @@ class Main extends PluginBase implements Listener {
 				  if($m >=100){
 						      EconomyAPI::getInstance()->reduceMoney($player, 100);
 				    $player->sendMessage("§f[§bBedWars Shop§f] §aEnderman cape purchased!");
-				    $player->hasPermission("enderman.cape")
+				    $player->hasPermission("enderman.cape");
 				$oldSkin = $player->getSkin();
 				$capeData = $this->createCape("Enderman");
 				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
@@ -223,7 +223,7 @@ class Main extends PluginBase implements Listener {
 				  if($m >=150){
 						      EconomyAPI::getInstance()->reduceMoney($player, 150);
 				    $player->sendMessage("§f[§bBedWars Shop§f] §aEnergy cape purchased!");
-				    $player->addPermission("energy.cape")
+				    $player->addPermission("energy.cape");
 				$oldSkin = $player->getSkin();
 				$capeData = $this->createCape("Energy");
 				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
@@ -248,7 +248,7 @@ class Main extends PluginBase implements Listener {
 				  if($m >=250){
 						      EconomyAPI::getInstance()->reduceMoney($player, 250);
 				    $player->sendMessage("§f[§bBedWars Shop§f] §aFire creeper cape purchased!");
-				    $player->addPermission("fire.cape")
+				    $player->addPermission("fire.cape");
 				$oldSkin = $player->getSkin();
 				$capeData = $this->createCape("Fire");
 				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
