@@ -112,10 +112,6 @@ class Main extends PluginBase implements Listener {
             case "cape":
                 if ($player instanceof Player) {
                     if (!isset($args[0])) {
-                        if (!$player->hasPermission("cape.cmd")) {
-                            $player->sendMessage($this->noperm);
-                            return true;
-                        } else {
                             $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createSimpleForm(function (Player $player, $data){
             $result = $data;
@@ -146,22 +142,6 @@ class Main extends PluginBase implements Listener {
                     $command = "cape fire";
 								$this->getServer()->getCommandMap()->dispatch($player, $command);
 						break;
-						           case 6:
-                    $command = "cape red_creeper";
-								$this->getServer()->getCommandMap()->dispatch($player, $command);
-                        break;
-                                   case 7:
-                    $command = "cape turtle";
-								$this->getServer()->getCommandMap()->dispatch($player, $command);
-                        break;
-                                   case 8:
-                    $command = "cape pickaxe";
-								$this->getServer()->getCommandMap()->dispatch($player, $command);
-                        break;
-                                  case 9:
-                    $command = "cape firework";
-								$this->getServer()->getCommandMap()->dispatch($player, $command);
-                        break;
              }
              });
         $form->setTitle("§bUltraCapes Menu");
@@ -172,10 +152,6 @@ class Main extends PluginBase implements Listener {
         $form->addButton("§eEndermancape", 3);
         $form->addButton("§eEnergycape", 4);
         $form->addButton("§eFirecape", 5);
-        $form->addButton("§eRed-Creeper-Cape", 6);
-        $form->addButton("§eTurtlecape", 7);
-        $form->addButton("§ePickaxecape", 8);
-        $form->addButton("§eFireworkcape", 9);
         $form->sendToPlayer($player);
         }
         return true;
@@ -190,109 +166,110 @@ class Main extends PluginBase implements Listener {
                             $player->sendMessage("§f[§bServer§f] §aSkin resetted!");
                             return true;
                         case "blue_creeper":
-                            if (!$player->hasPermission("blue_creeper.cape")) {
-                                $player->sendMessage($this->noperm);
-                                return true;
-                            }else{
-        $oldSkin = $player->getSkin();
-        $capeData = $this->createCape("Blue_Creeper");
-        $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
-        $player->setSkin($setCape);
-                $player->sendSkin();
-                $player->sendMessage("§f[§bServer§f] §aBlue Creeper Cape activated!");
-                         }
+				 $m = EconomyAPI::getInstance()->myMoney($sender);
+				$getperm = new Config("plugins/PurePerms/players/" . $sender->getName() . ".yml", Config::YAML);
+				if($getperm->get("blue.creeper") === false) {
+				  if($m >=30){
+						      EconomyAPI::getInstance()->reduceMoney($sender, 30);
+				    $sender->sendMessage("§f[§bBedWars Shop§f] §aBlue creeper cape purchased!");
+				    $player->getServer()->dispatchCommand("setuperm ".$player->getName()." blue.creeper");
+				$oldSkin = $player->getSkin();
+				$capeData = $this->createCape("Blue_Creeper");
+				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+				$player->setSkin($setCape);
+					$player->sendSkin();
+					$player->sendMessage("§f[§bServer§f] §aBlue Creeper Cape activated!");
+						 } else {
+					  $player->sendMessage("§f[§bServer§f] §aBlue Creeper Cape failed cause you have no money!");
+				  }
+				} else {
+				  $oldSkin = $player->getSkin();
+				$capeData = $this->createCape("Blue_Creeper");
+				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+				$player->setSkin($setCape);
+					$player->sendSkin();
+					$player->sendMessage("§f[§bServer§f] §aBlue_Creeper Creeper Cape activated!");
+				}
                             return true;
                         case "enderman":
-                            if (!$player->hasPermission("enderman.cape")) {
-                                $player->sendMessage($this->noperm);
-                            return true;
-                            }else{
-        $oldSkin = $player->getSkin();
-        $capeData = $this->createCape("Enderman");
-        $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
-        $player->setSkin($setCape);
-                $player->sendSkin();
-                $player->sendMessage("§f[§bServer§f] §aEnderman Cape activated!");
-                return true;
-                            }
+					    $m = EconomyAPI::getInstance()->myMoney($sender);
+				$getperm = new Config("plugins/PurePerms/players/" . $sender->getName() . ".yml", Config::YAML);
+				if($getperm->get("enderman.cape") === false) {
+				  if($m >=100){
+						      EconomyAPI::getInstance()->reduceMoney($sender, 100);
+				    $sender->sendMessage("§f[§bBedWars Shop§f] §aEnderman cape purchased!");
+				    $player->getServer()->dispatchCommand("setuperm ".$player->getName()." enderman.cape");
+				$oldSkin = $player->getSkin();
+				$capeData = $this->createCape("Enderman");
+				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+				$player->setSkin($setCape);
+					$player->sendSkin();
+					$player->sendMessage("§f[§bServer§f] §aEnderman activated!");
+						 } else {
+					  $player->sendMessage("§f[§bServer§f] §aEnderman Creeper Cape failed cause you have no money!");
+				  }
+				} else {
+				  $oldSkin = $player->getSkin();
+				$capeData = $this->createCape("Enderman");
+				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+				$player->setSkin($setCape);
+					$player->sendSkin();
+					$player->sendMessage("§f[§bServer§f] §aEnderman Cape activated!");
+				}
+				    return true;
                         case "energy":
-                            if (!$player->hasPermission("energy.cape")) {
-                                $player->sendMessage($this->noperm);
-                                return true;
-                         } else {
-        $oldSkin = $player->getSkin();
-        $capeData = $this->createCape("Energy");
-        $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
-        $player->setSkin($setCape);
-                $player->sendSkin();
-                $player->sendMessage("§f[§bServer§f] §aEnergy Cape activated!");
+                            	    $m = EconomyAPI::getInstance()->myMoney($sender);
+				$getperm = new Config("plugins/PurePerms/players/" . $sender->getName() . ".yml", Config::YAML);
+				if($getperm->get("energy.cape") === false) {
+				  if($m >=150){
+						      EconomyAPI::getInstance()->reduceMoney($sender, 150);
+				    $sender->sendMessage("§f[§bBedWars Shop§f] §aEnergy cape purchased!");
+				    $player->getServer()->dispatchCommand("setuperm ".$player->getName()." energy.cape");
+				$oldSkin = $player->getSkin();
+				$capeData = $this->createCape("Energy");
+				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+				$player->setSkin($setCape);
+					$player->sendSkin();
+					$player->sendMessage("§f[§bServer§f] §aEnergy Cape activated!");
+						 } else {
+					  $player->sendMessage("§f[§bServer§f] §cEnergy Cape failed cause you have no money!");
+				  }
+				} else {
+				  $oldSkin = $player->getSkin();
+				$capeData = $this->createCape("Energy");
+				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+				$player->setSkin($setCape);
+					$player->sendSkin();
+					$player->sendMessage("§f[§bServer§f] §aEnergy Cape activated!");
+				}
                 return true;
-                         }
                         case "fire":
-                            if (!$player->hasPermission("fire.cape")) {
-                                $player->sendMessage($this->noperm);
-                                return true;
-                            }else{
-        $oldSkin = $player->getSkin();
-        $capeData = $this->createCape("Fire");
-        $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
-        $player->setSkin($setCape);
-                $player->sendSkin();
-                $player->sendMessage("§f[§bServer§f] §aFire Cape activated!");
+                           	    $m = EconomyAPI::getInstance()->myMoney($sender);
+				$getperm = new Config("plugins/PurePerms/players/" . $sender->getName() . ".yml", Config::YAML);
+				if($getperm->get("fire.cape") === false) {
+				  if($m >=200){
+						      EconomyAPI::getInstance()->reduceMoney($sender, 200);
+				    $sender->sendMessage("§f[§bBedWars Shop§f] §aFire creeper cape purchased!");
+				    $player->getServer()->dispatchCommand("setuperm ".$player->getName()." fire.cape");
+				$oldSkin = $player->getSkin();
+				$capeData = $this->createCape("Fire");
+				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+				$player->setSkin($setCape);
+					$player->sendSkin();
+					$player->sendMessage("§f[§bServer§f] §aFire Cape activated!");
+						 } else {
+					  $player->sendMessage("§f[§bServer§f] §aFire Cape failed cause you have no money!");
+				  }
+				} else {
+				  $oldSkin = $player->getSkin();
+				$capeData = $this->createCape("Fire");
+				$setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
+				$player->setSkin($setCape);
+					$player->sendSkin();
+					$player->sendMessage("§f[§bServer§f] §aFire Cape activated!");
+				}
                 return true;
-                            }
-                        case "red_creeper":
-                            if (!$player->hasPermission("red_creeper.cape")) {
-                                $player->sendMessage($this->noperm);
-                                return true;
-                            } else {
-        $oldSkin = $player->getSkin();
-        $capeData = $this->createCape("Red_Creeper");
-        $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
-        $player->setSkin($setCape);
-                $player->sendSkin();
-                $player->sendMessage("§f[§bServer§f] §aRed Creeper Cape activated!");
-                            return true;
-                            }
-                            case "turtle":
-                            if (!$player->hasPermission("turtle.cape")) {
-                                $player->sendMessage($this->noperm);
-                                return true;
-                            }else{
-        $oldSkin = $player->getSkin();
-        $capeData = $this->createCape("Turtle");
-        $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
-        $player->setSkin($setCape);
-                $player->sendSkin();
-                $player->sendMessage("§f[§bServer§f] §aTurtle Cape activated!");
-                            return true;
-                            }
-                        case "pickaxe":
-                            if (!$player->hasPermission("pickaxe.cape")) {
-                                $player->sendMessage($this->noperm);
-                                return true;
-                            }else{
-        $oldSkin = $player->getSkin();
-        $capeData = $this->createCape("Pickaxe");
-        $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
-        $player->setSkin($setCape);
-                $player->sendSkin();
-                $player->sendMessage("§f[§bServer§f] §aPickaxe Cape activated!");
-                            return true;
-                            }
-                        case "firework":
-                            if (!$player->hasPermission("firework.cape")) {
-                                $player->sendMessage($this->noperm);
-                                return true;
-                            }else{
-        $oldSkin = $player->getSkin();
-        $capeData = $this->createCape("Firework");
-        $setCape = new Skin($oldSkin->getSkinId(), $oldSkin->getSkinData(), $capeData, $oldSkin->getGeometryName(), $oldSkin->getGeometryData());
-        $player->setSkin($setCape);
-                $player->sendSkin();
-                $player->sendMessage("§f[§bServer§f] §aFirework Cape activated!");
-                            return true;
-                            }
+                         
   }
         }
         }
